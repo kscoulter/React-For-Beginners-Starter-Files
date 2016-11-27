@@ -4,6 +4,25 @@ import Order from './Order';
 import Inventory from './Inventory';
 
 class App extends React.Component {
+  constructor(){
+    super(); //initializes the react componenet
+    this.addFish = this.addFish.bind(this);
+    //get initial state
+    this.state = {
+      fishes: {},
+      order: {}
+    };
+  }
+
+  addFish(fish){
+    //update our state
+    const fishes = {...this.state.fishes}; //... is a spread, takes every item from the object and maps it onto the new object. Basically duplicates the object.
+    //add new fish
+    const timestamp = Date.now();
+    fishes[`fish-${timestamp}`] = fish;
+    //set state
+    this.setState({fishes: fishes})
+  }
   render(){
     return(
       <div className="catch-of-the-day">
@@ -11,7 +30,7 @@ class App extends React.Component {
           <Header tagline="Fresh Seafood Market"/>
         </div>
           <Order />
-          <Inventory />
+          <Inventory addFish={this.addFish} />
       </div>
     )
   }
