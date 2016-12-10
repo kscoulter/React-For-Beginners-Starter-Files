@@ -38,7 +38,11 @@ class App extends React.Component {
         <div className="menu">
           <Header tagline="Fresh Seafood Market"/>
           <ul className="list-of-fishes">
-            <Fish />
+            {
+              Object
+              .keys(this.state.fishes) //Object.keys returns an array that can be itirated over
+              .map(key => <Fish  key={key} details={this.state.fishes[key]} />)
+            }
           </ul>
         </div>
           <Order />
