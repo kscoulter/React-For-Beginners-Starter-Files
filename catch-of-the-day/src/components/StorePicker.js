@@ -8,11 +8,13 @@ class StorePicker extends React.Component {
   // }
   goToStore(event) {
     event.preventDefault();
+    //this.storeInput was already declared inside the input of the form in the render function.
     const storeId = this.storeInput.value;
     this.context.router.transitionTo(`/store/${storeId}`);
   }
   render(){
     return (
+      //this binds this to the contest of StorePicker component
       <form className="store-selector" onSubmit={(e) => this.goToStore(e)}>
         <h2>Please Enter A Store</h2>
         <input type="text" required placeholer="Store Name"
@@ -22,7 +24,7 @@ class StorePicker extends React.Component {
     )
   }
 }
-
+//this surfaces the router, making it available to use in this component
 StorePicker.contextTypes = {
   router: React.PropTypes.object
 }
